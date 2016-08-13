@@ -250,7 +250,7 @@ Visualization Manager:
       Draw Behind: true
       Enabled: true
       Name: Map
-      Topic: /robot_1/move_base_node/global_costmap/costmap
+      Topic: /robot_1/move_base_node/local_costmap/costmap
       Unreliable: false
       Value: true
     - Alpha: 0.1
@@ -259,7 +259,7 @@ Visualization Manager:
       Draw Behind: true
       Enabled: true
       Name: Map
-      Topic: /robot_2/move_base_node/global_costmap/costmap
+      Topic: /robot_2/move_base_node/local_costmap/costmap
       Unreliable: false
       Value: true
     - Alpha: 0.1
@@ -268,7 +268,7 @@ Visualization Manager:
       Draw Behind: true
       Enabled: true
       Name: Map
-      Topic: /robot_3/move_base_node/global_costmap/costmap
+      Topic: /robot_3/move_base_node/local_costmap/costmap
       Unreliable: false
       Value: true
     - Alpha: 1
