@@ -20,7 +20,7 @@ from random import random
 from numpy import array,concatenate,vstack,delete,floor,ceil
 from numpy import linalg as LA
 from numpy import all as All
-from functions import Nearest,Steer,Near,ObstacleFree,Find,Cost,prepEdges,gridValue,assigner
+from functions import Nearest,Steer,Near,ObstacleFree,Find,Cost,prepEdges,gridValue,assigner1
 import parameters as param
 #-----------------------------------------------------
 # Subscribers' callbacks------------------------------
@@ -36,9 +36,8 @@ def mapCallBack(data):
 
 # Node----------------------------------------------
 def node():
-	aval1=True
-	aval2=True
-	aval3=True
+	r1=1
+	r2=1
 	global mapData
 
     	rospy.Subscriber("/robot_1/map", OccupancyGrid, mapCallBack)
@@ -50,30 +49,25 @@ def node():
     	client1 = actionlib.SimpleActionClient('/robot_1/move_base', MoveBaseAction)
     	client1.wait_for_server()
     	
-    	client2 = actionlib.SimpleActionClient('/robot_2/move_base', MoveBaseAction)
-    	client2.wait_for_server()
     	
-    	client3 = actionlib.SimpleActionClient('/robot_3/move_base', MoveBaseAction)
-    	client3.wait_for_server()
 
     	goal = MoveBaseGoal()
     	goal.target_pose.header.stamp=rospy.Time.now()
     	goal.target_pose.header.frame_id="/robot_1/map"
-    	goal.target_pose.pose.position.x=1.0
-    	goal.target_pose.pose.position.y=-2.0
+    	goal.target_pose.pose.position.x=1
+    	goal.target_pose.pose.position.y=0
     	goal.target_pose.pose.position.z=0
     	goal.target_pose.pose.orientation.w = 1.0
     	
-  	client1.send_goal(goal)
-	client1.wait_for_result()
-	client1.get_result() 
+   	
     	
-    	
-    	goal.target_pose.pose.position.x=0.0
-    	goal.target_pose.pose.position.y=-0.0
-    	client2.send_goal(goal)
-    	client3.send_goal(goal)  
-    	 	
+    	client1.send_goal(goal)
+    	h=client1.get_state()
+    	print h,'\n ------',rospy.Time.now(),'------ \n'
+    	client1.wait_for_result()
+    	client1.get_result() 
+
+    	   	
     	rate = rospy.Rate(50)	
 
 	listener = tf.TransformListener()
@@ -144,18 +138,22 @@ def node():
 	resolution=mapData.info.resolution
 	Xstartx=mapData.info.origin.position.x
 	Xstarty=mapData.info.origin.position.y 
-        raw_input('Press Enter to start exploration')
+	#raw_input('Press Enter to start exploration')
+
 #-------------------------------RRT------------------------------------------
 	while not rospy.is_shutdown():
 
 	 
 # Sample free
-	  indxRand= floor( len(mapData.data)*random())
-	  yr=ceil(indxRand/xdim)
-	  xr=indxRand-(floor(indxRand/xdim))*xdim
-	  xr=xr*resolution+Xstartx
-	  yr=yr*resolution+Xstarty
+	  #indxRand= floor( len(mapData.data)*random())
+	  #yr=ceil(indxRand/xdim)
+	  #xr=indxRand-(floor(indxRand/xdim))*xdim
+	  #xr=xr*resolution+Xstartx
+	  #yr=yr*resolution+Xstarty
+	  xr=(random()*20.0)-10.0
+	  yr=(random()*20.0)-10.0
 	  x_rand = array([xr,yr])
+	  
 	  
 	  
  
@@ -164,18 +162,20 @@ def node():
 
 # Steer
 	  x_new=Steer(x_nearest,x_rand,param.eta)
-
+	  
+	  goal.target_pose.pose.position.x=x_new[0]
+	  goal.target_pose.pose.position.y=x_new[1]
+          goal.target_pose.pose.orientation.w = 1.0
+	  
 # unKnow discovery	  
 	  if gridValue(mapData,x_new)==-1:
-	  	assigner3(goal,x_new,client1,client2,client3,listener)
-	  	
-
+	  	assigner1(goal,x_new,client1,listener)
+	  
 
 
 # ObstacleFree
-
+	  
 	  if ObstacleFree(x_nearest,x_new,mapData,param.steps):
-	  	
 # Near function
 	  	X_near=Near(V,x_new,param.rneighb)			
 	        s_Xnear=X_near.shape[0]
@@ -206,18 +206,14 @@ def node():
 				temp=concatenate((x_new,xnear))
 				E=vstack((E,temp))
 	
+#Plotting
+	  	
+	  	
+    	
+    		
+    			
+ 
 
-	  	
-	  	
-	  	#goal.target_pose.pose.position.x=x_new[0]
-	    	#goal.target_pose.pose.position.y=x_new[1]
-    		#goal.target_pose.pose.orientation.w = 1.0
-    		
-    		
-# Assigner
-		#assigner3(goal,x_new,client1,client2,client3,listener)
-	    		
-#Plotting 	
 	  	 
 	  	pl=prepEdges(E)
 		p.x=x_new[0] 

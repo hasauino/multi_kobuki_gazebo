@@ -62,6 +62,25 @@ def Steer(x0,x1,eta):
 		
 	return xnew
 
+
+# gridValue function-------------------------------------
+def gridValue(mapData,Xp):
+ resolution=mapData.info.resolution
+ Xstartx=mapData.info.origin.position.x
+ Xstarty=mapData.info.origin.position.y
+
+ width=mapData.info.width
+ Data=mapData.data
+ # returns grid value at "Xp" location
+ #map data:  100 occupied      -1 unknown       0 free
+ index=(  floor((Xp[1]-Xstarty)/resolution)*width)+( floor((Xp[0]-Xstartx)/resolution) )
+ 
+ if int(index) < len(Data):
+ 	return Data[int(index)]
+ else:
+ 	return 100
+
+ 
 # gridCheck function-------------------------------------
 def gridCheck(mapData,Xp):
  resolution=mapData.info.resolution
@@ -178,6 +197,112 @@ def prepEdges(E):
 			
 		
 	return pl
+
+# Assigner 3 robots------------------------------------------------------------------------------------------------------------------------
+def assigner3(goal,x_new,client1,client2,client3,listener):
+		clientstate1=client1.get_state()
+		clientstate2=client2.get_state()
+		clientstate3=client3.get_state()
+		
+		if clientstate1==2 or clientstate1==3 or clientstate1==4 or clientstate1==5 or clientstate1==9:
+			aval1=1
+		else:
+			aval1=10000000
+		
+		if clientstate2==2 or clientstate2==3 or clientstate2==4 or clientstate2==5 or clientstate2==9:
+			aval2=1
+		else:
+			aval2=10000000
+			
+		if clientstate3==2 or clientstate3==3 or clientstate3==4 or clientstate3==5 or clientstate3==9:
+			aval3=1
+		else:
+			aval3=10000000
+		
+		
+	
+		
+		
+		(trans1,rot) = listener.lookupTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0))  
+		(trans2,rot) = listener.lookupTransform('/robot_1/map', '/robot_2/base_link', rospy.Time(0)) 
+		(trans3,rot) = listener.lookupTransform('/robot_1/map', '/robot_3/base_link', rospy.Time(0)) 
+		
+		dist1=LA.norm(array([ trans1[0],trans1[1] ])-x_new)*aval1
+		dist2=LA.norm(array([ trans2[0],trans2[1] ])-x_new)*aval2
+		dist3=LA.norm(array([ trans3[0],trans3[1] ])-x_new)*aval3
+		
+		alldist=[dist1,dist2,dist3]
+		
+		# if no robot is available wait
+		while aval1==aval2==aval3==10000000:
+			clientstate1=client1.get_state()
+			clientstate2=client2.get_state()
+			clientstate3=client3.get_state()
+		
+			if clientstate1==2 or clientstate1==3 or clientstate1==4 or clientstate1==5 or clientstate1==9:
+				aval1=1
+			else:
+				aval1=10000000
+		
+			if clientstate2==2 or clientstate2==3 or clientstate2==4 or clientstate2==5 or clientstate2==9:
+				aval2=1
+			else:
+				aval2=10000000
+			
+			if clientstate3==2 or clientstate3==3 or clientstate3==4 or clientstate3==5 or clientstate3==9:
+				aval3=1
+			else:
+				aval3=10000000
+			
+		goal.target_pose.pose.position.x=x_new[0]
+	    	goal.target_pose.pose.position.y=x_new[1]
+    		goal.target_pose.pose.orientation.w = 1.0
+			
+		#send command to the lowest cost available robot	
+		if min(alldist)==dist1 and aval1==1:
+			
+			client1.send_goal(goal)
+			#client1.wait_for_result()
+			#client1.get_result()		
+		elif min(alldist)==dist2 and aval2==1:
+			
+			client2.send_goal(goal)
+			#client2.wait_for_result()
+			#client2.get_result()
+		elif min(alldist)==dist3 and aval3==1:
+			
+			client3.send_goal(goal)
+			#client3.wait_for_result()
+			#client3.get_result()
+		
+		return 0
+			
+
+# Assigner 1 robots------------------------------------------------------------------------------------------------------------------------
+def assigner1(goal,x_new,client1,listener):
+		clientstate1=client1.get_state()
+		
+		if clientstate1==2 or clientstate1==3 or clientstate1==4 or clientstate1==5 or clientstate1==9:
+			aval1=1
+		else:
+			aval1=10000000
+		
+		(trans1,rot) = listener.lookupTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0))  
+
+		
+		dist1=LA.norm(array([ trans1[0],trans1[1] ])-x_new)*aval1
+
+				
+			
+			
+		if aval1==1:
+			client1.send_goal(goal)
+			#client1.wait_for_result()
+    			#client1.get_result() 
+	
+
+		
+		return 0
 
 
 
