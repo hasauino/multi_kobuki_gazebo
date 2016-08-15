@@ -280,29 +280,13 @@ def assigner3(goal,x_new,client1,client2,client3,listener):
 
 # Assigner 1 robots------------------------------------------------------------------------------------------------------------------------
 def assigner1(goal,x_new,client1,listener):
-		clientstate1=client1.get_state()
-		
-		if clientstate1==2 or clientstate1==3 or clientstate1==4 or clientstate1==5 or clientstate1==9:
-			aval1=1
-		else:
-			aval1=10000000
-		
-		(trans1,rot) = listener.lookupTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0))  
-
-		
-		dist1=LA.norm(array([ trans1[0],trans1[1] ])-x_new)*aval1
-
-				
-			
-			
-		if aval1==1:
-			client1.send_goal(goal)
-			#client1.wait_for_result()
-    			#client1.get_result() 
+	client1.send_goal(goal)
+	client1.wait_for_result()
+        client1.get_result() 
 	
 
 		
-		return 0
+	return 0
 
 
 

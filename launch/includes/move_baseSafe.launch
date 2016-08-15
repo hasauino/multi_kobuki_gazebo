@@ -53,8 +53,8 @@
     <param name="oscillation_timeout" value="30.0" />
     <param name="oscillation_distance" value="0.5" />
     <remap from="cmd_vel" to="mobile_base/commands/velocity"/>
-    <param name="recovery_behavior_enabled" value="false" />
-    <param name="clearing_rotation_allowed" value="false" />
+    <!--param name="recovery_behavior_enabled" value="false" /-->
+    <!--param name="clearing_rotation_allowed" value="false" /-->
     <!--param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" /-->
     
     <rosparam file="$(find multi_kobuki_gazebo)/launch/includes/costmap_common_params.yaml" command="load" ns="global_costmap" />
