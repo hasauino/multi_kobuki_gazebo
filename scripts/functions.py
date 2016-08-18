@@ -280,10 +280,30 @@ def assigner3(goal,x_new,client1,client2,client3,listener):
 
 # Assigner 1 robots------------------------------------------------------------------------------------------------------------------------
 def assigner1(goal,x_new,client1,listener):
-	client1.send_goal(goal)
-	client1.wait_for_result()
-        client1.get_result() 
+	#client1.send_goal(goal)
+	#client1.wait_for_result()
+        #client1.get_result() 
+	clientstate1=client1.get_state()
+		
+	if clientstate1==2 or clientstate1==3 or clientstate1==4 or clientstate1==5 or clientstate1==9:
+		client1.send_goal(goal)
 	
+
+
+		
+	return 0
+	
+# Assigner 1 robots------------------------------------------------------------------------------------------------------------------------
+def assigner1new(goal,x_new,client1,listener):
+	goal.target_pose.pose.position.x=x_new[0]
+	goal.target_pose.pose.position.y=x_new[1]
+    	goal.target_pose.pose.orientation.w = 1.0
+	clientstate1=client1.get_state()
+		
+	if clientstate1==2 or clientstate1==3 or clientstate1==4 or clientstate1==5 or clientstate1==9:
+		client1.send_goal(goal)
+	
+
 
 		
 	return 0
