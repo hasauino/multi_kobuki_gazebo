@@ -8,7 +8,7 @@ from os import system
 
 from random import random
 from numpy import array
-from numpy import floor
+from numpy import floor,ceil
 from numpy import delete
 from numpy import concatenate
 from numpy import vstack
@@ -99,23 +99,19 @@ def gridCheck(mapData,Xp):
   	  c=0
  	else:
  	  c=1 
- 
-  
- #print 'point=',Xp,'    index= ',index,'           grid=',Data[int(index)]
- #print c
+
  return c
 
 # ObstacleFree function-------------------------------------
 
-def ObstacleFree(xnear,xnew,mapsub,stepz):
+def ObstacleFree(xnear,xnew,mapsub):
  out=1
- ri=LA.norm(xnew-xnear)/stepz
+ rez=mapsub.info.resolution*0.5
+ stepz=int(ceil(LA.norm(xnew-xnear))/rez)
  xi=xnear
- 
- c=1
 
  for c in range(0,stepz):
-   xi=Steer(xi,xnew,c*ri)
+   xi=Steer(xi,xnew,rez)
    if (gridCheck(mapsub,xi) !=0):
      out=0
      
@@ -293,7 +289,7 @@ def assigner1(goal,x_new,client1,listener):
 		
 	return 0
 	
-# Assigner 1 robots------------------------------------------------------------------------------------------------------------------------
+# Assigner 1 robots  opecv detector------------------------------------------------------------------------------------------------------------------------
 def assigner1new(goal,x_new,client1,listener):
 	goal.target_pose.pose.position.x=x_new[0]
 	goal.target_pose.pose.position.y=x_new[1]
@@ -307,8 +303,53 @@ def assigner1new(goal,x_new,client1,listener):
 
 		
 	return 0
+	
 
 
+#-------------RRT frontier
+
+# oObstacleFree function-------------------------------------
+
+def ObstacleFree2(xnear,xnew,mapsub):
+ 
+ rez=mapsub.info.resolution*0.5
+ stepz=int(ceil(LA.norm(xnew-xnear))/rez)
+
+ xi=xnear
+ 
+
+ obs=0
+ unk=0
+ for c in range(0,stepz):
+   xi=Steer(xi,xnew,rez)
+   if (gridValue(mapsub,xi) ==100):
+      obs=1
+   if (gridValue(mapsub,xi) ==-1):
+      unk=1
+     
+   
+
+ if (gridValue(mapsub,xnew) ==100):
+  obs=1
+ 
+ if (gridValue(mapsub,xi) ==-1):
+   unk=1
+  
+ 
+ 
+ 
+ 
+ if unk==1:
+ 	out=-1
+ 	
+ if obs==1:
+ 	out=0
+ 		
+ if obs!=1 and unk!=1:
+        out=1
+ #print "obs= ",obs,"    unk=    ",unk,"      out=     ",out
+ #raw_input(" ")
+ return out
 
 
 

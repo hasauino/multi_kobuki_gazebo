@@ -174,7 +174,7 @@ def node():
 
 # ObstacleFree
 
-	  if ObstacleFree(x_nearest,x_new,mapData,param.steps):
+	  if ObstacleFree(x_nearest,x_new,mapData):
 	  	
 # Near function
 	  	X_near=Near(V,x_new,param.rneighb)			
@@ -189,7 +189,7 @@ def node():
 
 		for ii in range(0,s_Xnear):						
 			xnear=copy(X_near[ii,:])
-			if ObstacleFree(xnear,x_new,mapData,param.steps) and ( Cost(E,xnear)+LA.norm(xnear-x_new) )<cmin:
+			if ObstacleFree(xnear,x_new,mapData) and ( Cost(E,xnear)+LA.norm(xnear-x_new) )<cmin:
 				xmin=copy(xnear)
 				cmin=Cost(E,xnear)+LA.norm(xnear-x_new)
 		
@@ -200,7 +200,7 @@ def node():
 		iii=0
 		for iii in range(0,s_Xnear):						
 			xnear=copy(X_near[iii,:])		
-			if ObstacleFree(xnear,x_new,mapData,param.steps) and ( Cost(E,x_new)+LA.norm(xnear-x_new) )<Cost(E,xnear):
+			if ObstacleFree(xnear,x_new,mapData) and ( Cost(E,x_new)+LA.norm(xnear-x_new) )<Cost(E,xnear):
 				row=Find(E,xnear)
 				E=delete(E, (row), axis=0)
 				temp=concatenate((x_new,xnear))
