@@ -51,7 +51,7 @@ Visualization Manager:
       Color: 255; 85; 0
       Enabled: true
       Name: Polygon
-      Topic: /robot_1/move_base_node/global_costmap/footprint
+      Topic: /robot_1/move_base_node/local_costmap/footprint
       Unreliable: false
       Value: true
     - Class: rviz/TF
@@ -120,7 +120,7 @@ Visualization Manager:
       Marker Topic: /shapes
       Name: Marker
       Namespaces:
-        {}
+        markers: true
       Queue Size: 100
       Value: true
     - Alpha: 1
@@ -212,7 +212,7 @@ Visualization Manager:
       Max Color: 255; 255; 255
       Max Intensity: 999999
       Min Color: 0; 0; 0
-      Min Intensity: 0
+      Min Intensity: -999999
       Name: LaserScan
       Position Transformer: XYZ
       Queue Size: 10
@@ -249,16 +249,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 16.4193
+      Distance: 23.0679
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 1.19199
-        Y: -0.75131
-        Z: 1.54302
+        X: -0.0345659
+        Y: -1.56437
+        Z: 1.54225
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.5698

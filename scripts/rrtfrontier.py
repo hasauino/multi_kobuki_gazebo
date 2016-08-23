@@ -20,7 +20,7 @@ from random import random
 from numpy import array,concatenate,vstack,delete,floor,ceil
 from numpy import linalg as LA
 from numpy import all as All
-from functions import Nearest,Steer,Near,ObstacleFree2,Find,Cost,prepEdges,gridValue,assigner1new
+from functions import Nearest,Steer,Near,ObstacleFree2,Find,Cost,prepEdges,gridValue,assigner1rrtfront
 import parameters as param
 #-----------------------------------------------------
 # Subscribers' callbacks------------------------------
@@ -56,7 +56,7 @@ def node():
 
 
     	   	
-    	rate = rospy.Rate(50)	
+    	rate = rospy.Rate(100)	
 
 	listener = tf.TransformListener()
 	listener.waitForTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0),rospy.Duration(10.0))
@@ -137,14 +137,14 @@ def node():
 	resolution=mapData.info.resolution
 	Xstartx=mapData.info.origin.position.x
 	Xstarty=mapData.info.origin.position.y 
-	#raw_input('Press Enter to start exploration')
+	
 
 #-------------------------------RRT------------------------------------------
 	while not rospy.is_shutdown():
 
 	 
 # Sample free
-	  xr=(random()*20.0)-10.0
+          xr=(random()*20.0)-10.0
 	  yr=(random()*20.0)-10.0
 	  x_rand = array([xr,yr])
 	  
@@ -163,23 +163,14 @@ def node():
 	  checking=ObstacleFree2(x_nearest,x_new,mapData)
 	  
 	  if checking==-1:
-	  	
-	 	
-    	 	p.x=x_new[0] 
-          	p.y=x_new[1]
-          	points.points=[p]
-          	pub.publish(points)
+
           	
           	if len(frontiers)>0:
           		frontiers=vstack((frontiers,x_new))
           	else:
-          		frontiers=x_new
-          	
-          	
-	  	assigner1new(goal,x_new,client1,listener)
-	  	
-	  	
-	  	(trans,rot) = listener.lookupTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0))
+          		frontiers=[x_new]
+          		
+          	(trans,rot) = listener.lookupTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0))
 	  	xinx=trans[0]
 		xiny=trans[1]	
 		x_init=array([xinx,xiny])
@@ -196,27 +187,36 @@ def node():
 
 
 		
+
+          
+          
+	  z=0
+          while z<len(frontiers):
+	  	if gridValue(mapData,frontiers[z])!=-1:
+	  		frontiers=delete(frontiers, (z), axis=0)
+	  		z=z-1
+		z+=1
+	  frontiers=assigner1rrtfront(goal,frontiers,client1,listener)  	
+          print rospy.Time.now(),"   ",len(frontiers)	
+	  pp=[]	
+	  for q in range(0,len(frontiers)):
+	  	
+	  	p.x=frontiers[q][0]
+          	p.y=frontiers[q][1]
+          	pp.append(copy(p))
+          	
+
+          		
+          
 #Plotting
 	  	
-	  	
-    	
-    		
-    			
- 
-
-	  	 
-	  	pl=prepEdges(E)
-		#p.x=x_new[0] 
-          	#p.y=x_new[1]
-          	#pp.append(copy(p))
-          	#points.points=pp
-          	line.points=pl
-          	#pub.publish(points)
-          	pub.publish(line)
-          	
-          	
+  	  points.points=pp
+          pl=prepEdges(E)
+          line.points=pl
+          pub.publish(line)        
+          pub.publish(points) 
 		
-
+	  
 	  rate.sleep()
 
 

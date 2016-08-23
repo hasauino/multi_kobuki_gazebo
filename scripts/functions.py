@@ -353,6 +353,40 @@ def ObstacleFree2(xnear,xnew,mapsub):
 
 
 
+#  assigner1rrtfront(goal,frontiers,client1,listener) ----------------------------------------------------
+
+def Nearest2(V,x):
+ n=1000000
+ i=0
+ for i in range(0,len(V)):
+    n1=LA.norm(V[i]-x)
+    if (n1<n):
+	n=n1
+        result=i    
+ return result
+
+
+def assigner1rrtfront(goal,frontiers,client1,listener):
+
+	clientstate1=client1.get_state()
+		
+	if clientstate1==2 or clientstate1==3 or clientstate1==4 or clientstate1==5 or clientstate1==9:
+		if len(frontiers)>0:
+			(tran,rot) = listener.lookupTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0))
+    			xp=[array(  [tran[0],tran[1]]  )]
+    			row=Nearest2(frontiers,xp)
+	    		nextfrontier=frontiers[row]
+	    		frontiers=delete(frontiers, (row), axis=0)
+	    		goal.target_pose.pose.position.x=nextfrontier[0]
+			goal.target_pose.pose.position.y=nextfrontier[1]
+    			goal.target_pose.pose.orientation.w = 1.0
+    			print "exploration goal sent"
+			client1.send_goal(goal)
+	
+
+
+		
+	return frontiers
 
 
 
