@@ -3,7 +3,8 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /Marker2
       Splitter Ratio: 0.5
     Tree Height: 451
   - Class: rviz/Selection
@@ -117,7 +118,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Marker
       Enabled: true
-      Marker Topic: /shapes
+      Marker Topic: /robot_1/shapes
       Name: Marker
       Namespaces:
         markers: true
@@ -129,7 +130,7 @@ Visualization Manager:
       Draw Behind: true
       Enabled: true
       Name: Map
-      Topic: /robot_1/map
+      Topic: /map_merge/map
       Unreliable: false
       Value: true
     - Alpha: 0.1
@@ -210,9 +211,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 999999
+      Max Intensity: 1.0263e-37
       Min Color: 0; 0; 0
-      Min Intensity: -999999
+      Min Intensity: 1.12104e-43
       Name: LaserScan
       Position Transformer: XYZ
       Queue Size: 10
@@ -224,6 +225,14 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: frontiers
+      Name: Marker
+      Namespaces:
+        markers: true
+      Queue Size: 100
       Value: true
   Enabled: true
   Global Options:
@@ -256,9 +265,9 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.0345659
-        Y: -1.56437
-        Z: 1.54225
+        X: -1.4031
+        Y: -0.997979
+        Z: 1.54286
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.5698

@@ -25,6 +25,7 @@
   <include file="$(find multi_kobuki_gazebo)/launch/includes/move_baseSafe.launch">
   <arg name="namespace" value="robot_1"/>
   </include>  
+  <node pkg="multi_kobuki_gazebo" type="rrt_frontier_detector.py" name="rrt_frontier_detector" output="screen"/>  
   </group>
   
   
@@ -38,6 +39,7 @@
   <include file="$(find multi_kobuki_gazebo)/launch/includes/move_baseSafe.launch">
   <arg name="namespace" value="robot_2"/>
   </include>  
+  <node pkg="multi_kobuki_gazebo" type="rrt_frontier_detector.py" name="rrt_frontier_detector" output="screen"/> 
   </group>
   
   
@@ -52,6 +54,7 @@
   <include file="$(find multi_kobuki_gazebo)/launch/includes/move_baseSafe.launch">
   <arg name="namespace" value="robot_3"/>
   </include>  
+  <node pkg="multi_kobuki_gazebo" type="rrt_frontier_detector.py" name="rrt_frontier_detector" output="screen"/>  
   </group>
   
   

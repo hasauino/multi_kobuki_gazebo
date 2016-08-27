@@ -21,7 +21,7 @@ from numpy import array,concatenate,vstack,delete,floor,ceil
 from numpy import linalg as LA
 from numpy import all as All
 from functions import Nearest,Steer,Near,ObstacleFree2,Find,Cost,prepEdges,gridValue,assigner1rrtfront
-import parameters as param
+
 #-----------------------------------------------------
 # Subscribers' callbacks------------------------------
 mapData=OccupancyGrid()
@@ -31,37 +31,48 @@ def mapCallBack(data):
     global mapData
     mapData=data
     
+    
 
     
 
 # Node----------------------------------------------
 def node():
 
+	rospy.init_node('rrt_frontier_detector', anonymous=False) 
+# fetching all parameters
+	eta = rospy.get_param('~eta',0.7)	
+	init_map_x=rospy.get_param('~init_map_x',20.0)
+	init_map_y=rospy.get_param('~init_map_y',20.0)
+	ns=rospy.get_namespace()
+		
+	map_topic=rospy.get_param('~map_topic',ns+'map')
+	base_frame_topic=rospy.get_param('~base_frame_topic','base_link')
+#-------------------------------------------
 	global mapData
-
-    	rospy.Subscriber("/robot_1/map", OccupancyGrid, mapCallBack)
+	exploration_goal=Point()
+	
+    	rospy.Subscriber(map_topic, OccupancyGrid, mapCallBack)
+	targetspub = rospy.Publisher('/exploration_goals', Point, queue_size=10)
     	pub = rospy.Publisher('shapes', Marker, queue_size=10)
-    	rospy.init_node('RRTexplorer', anonymous=False)
-
-    	#Actionlib client
-    	client1 = actionlib.SimpleActionClient('/robot_1/move_base', MoveBaseAction)
-    	client1.wait_for_server()
+    	 	
     	
-    	
-
-    	goal = MoveBaseGoal()
-    	goal.target_pose.header.stamp=rospy.Time.now()
-    	goal.target_pose.header.frame_id="/robot_1/map"
-
-
-    	   	
+   		 	   	
     	rate = rospy.Rate(100)	
 
-	listener = tf.TransformListener()
-	listener.waitForTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0),rospy.Duration(10.0))
+
 	
+
+# wait until map is received, when a map is received, mapData.header.seq will not be < 1
+	while mapData.header.seq<1 or len(mapData.data)<1:
+		pass
+	
+        	
+        
+        listener = tf.TransformListener()
+	listener.waitForTransform(mapData.header.frame_id, ns+base_frame_topic, rospy.Time(0),rospy.Duration(10.0))
+        
         try:
-		(trans,rot) = listener.lookupTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0))
+		(trans,rot) = listener.lookupTransform(mapData.header.frame_id, ns+base_frame_topic, rospy.Time(0))
 		
 		
         except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
@@ -69,16 +80,7 @@ def node():
 		
 	xinx=trans[0]
 	xiny=trans[1]	
-	goal.target_pose.pose.position.x=xinx-0.5
-    	goal.target_pose.pose.position.y=0
-    	goal.target_pose.pose.position.z=0
-    	goal.target_pose.pose.orientation.w = 1.0
-    	
-   	
-    	
-    	client1.send_goal(goal)
-    	client1.wait_for_result()
-    	client1.get_result() 
+
 	x_init=array([xinx,xiny])
 	
 	V=array([x_init])
@@ -87,8 +89,10 @@ def node():
 
     	points=Marker()
        	line=Marker()
+       	
+    
 #Set the frame ID and timestamp.  See the TF tutorials for information on these.
-    	points.header.frame_id=line.header.frame_id="/robot_1/map"
+    	points.header.frame_id=line.header.frame_id=mapData.header.frame_id
     	points.header.stamp=line.header.stamp=rospy.Time.now()
 	
     	points.ns=line.ns = "markers"
@@ -140,36 +144,29 @@ def node():
 
 #-------------------------------RRT------------------------------------------
 	while not rospy.is_shutdown():
-
-	 
+	  
 # Sample free
-          xr=(random()*20.0)-10.0
-	  yr=(random()*20.0)-10.0
+          xr=(random()*init_map_x)-(init_map_x*0.5)
+	  yr=(random()*init_map_y)-(init_map_y*0.5)
 	  x_rand = array([xr,yr])
 	  
-	  
-	  
- 
 # Nearest
 	  x_nearest=V[Nearest(V,x_rand),:]
 
 # Steer
-	  x_new=Steer(x_nearest,x_rand,param.eta)
+	  x_new=Steer(x_nearest,x_rand,eta)
 
-
-
-# ObstacleFree
+# ObstacleFree    1:free     -1:unkown (frontier region)      0:obstacle
 	  checking=ObstacleFree2(x_nearest,x_new,mapData)
 	  
 	  if checking==-1:
-
           	
-          	if len(frontiers)>0:
-          		frontiers=vstack((frontiers,x_new))
-          	else:
-          		frontiers=[x_new]
-          		
-          	(trans,rot) = listener.lookupTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0))
+          	exploration_goal.x=x_new[0]
+          	exploration_goal.y=x_new[1]
+          	exploration_goal.z=0.0
+          	targetspub.publish(exploration_goal)	
+          	
+          	(trans,rot) = listener.lookupTransform(mapData.header.frame_id, ns+base_frame_topic, rospy.Time(0))
 	  	xinx=trans[0]
 		xiny=trans[1]	
 		x_init=array([xinx,xiny])
@@ -184,32 +181,10 @@ def node():
 	 	temp=concatenate((x_nearest,x_new))        
 	        E=vstack((E,temp))
 
-
-		
-
-          
-          
-	  z=0
-          while z<len(frontiers):
-	  	if gridValue(mapData,frontiers[z])!=-1:
-	  		frontiers=delete(frontiers, (z), axis=0)
-	  		z=z-1
-		z+=1
-	  frontiers=assigner1rrtfront(goal,frontiers,client1,listener)  	
-          print rospy.Time.now(),"   ",len(frontiers)	
-	  pp=[]	
-	  for q in range(0,len(frontiers)):
-	  	
-	  	p.x=frontiers[q][0]
-          	p.y=frontiers[q][1]
-          	pp.append(copy(p))
-          	
-
-          		
           
 #Plotting
 	  	
-  	  points.points=pp
+  	  points.points=[exploration_goal]
           pl=prepEdges(E)
           line.points=pl
           pub.publish(line)        

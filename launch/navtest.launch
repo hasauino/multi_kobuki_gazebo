@@ -24,14 +24,56 @@
   
   <include file="$(find multi_kobuki_gazebo)/launch/includes/move_baseSafe.launch">
   <arg name="namespace" value="robot_1"/>
-  </include>  
+  </include> 
+  
+  
+  <node pkg="multi_kobuki_gazebo" type="rrt_frontier_detector.py" name="rrt_frontier_detector" output="screen">
+  <param name="eta" value="0.7"/>
+  <param name="init_map_x" value="20.0"/>
+  <param name="init_map_y" value="20.0"/>
+  <param name="map_topic" value="/map_merge/map"/>
+  <param name="base_frame_topic" value="base_link"/>
+  </node> 
   </group>
   
-
+  
+  
+  
+    <!-- spawn robot 2-->
+  <group ns="robot_2">
+  <include file="$(find multi_kobuki_gazebo)/launch/includes/robot.launch.xml">
+  <arg name="robot_name" value="robot_2"/>
+  <arg name="init_pose" value="-x -3.0 -y -4.0 -z 0.0"/>
+  
+  </include>
+  
+  <include file="$(find multi_kobuki_gazebo)/launch/includes/move_baseSafe.launch">
+  <arg name="namespace" value="robot_2"/>
+  </include> 
+  
+  
+  <node pkg="multi_kobuki_gazebo" type="rrt_frontier_detector.py" name="rrt_frontier_detector" output="screen">
+  <param name="eta" value="0.7"/>
+  <param name="init_map_x" value="20.0"/>
+  <param name="init_map_y" value="20.0"/>
+  <param name="map_topic" value="/map_merge/map"/>
+  <param name="base_frame_topic" value="base_link"/>
+  </node> 
+  </group>
+  
+  
+  
+  
+  
+  <!-- Map megring (know inital position case)-->
+  <include file="$(find multi_kobuki_gazebo)/launch/includes/initposes.launch"/>
+  <include file="$(find multirobot_map_merge)/launch/map_merge.launch"/>
+  <!-- transformation between robots-->
+  <node pkg="tf" type="static_transform_publisher" name="robot2_to_robot1" args="-3.0 -4.0 0 0 0 0 /robot_1/map /robot_2/map 20" />
 
 
   <!-- run RViz node (visualization) -->
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find multi_kobuki_gazebo)/launch/rviz_config/single.rviz">
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find multi_kobuki_gazebo)/launch/rviz_config/two.rviz">
   <remap from="move_base_simple/goal" to="robot_1/move_base_simple/goal"/>
   </node>
 
