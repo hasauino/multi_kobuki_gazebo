@@ -27,7 +27,7 @@
   </include> 
   
   
-  <node pkg="multi_kobuki_gazebo" type="rrt_frontier_detector.py" name="rrt_frontier_detector" output="screen">
+  <node pkg="multi_kobuki_gazebo" type="rrt_frontier_detector_vor.py" name="rrt_frontier_detector" output="screen">
   <param name="eta" value="0.7"/>
   <param name="init_map_x" value="20.0"/>
   <param name="init_map_y" value="20.0"/>

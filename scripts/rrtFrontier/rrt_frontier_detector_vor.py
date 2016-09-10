@@ -50,10 +50,12 @@ def node():
 #-------------------------------------------
 	global mapData
 	exploration_goal=Point()
+	point=Point()
 	
     	rospy.Subscriber(map_topic, OccupancyGrid, mapCallBack)
 	targetspub = rospy.Publisher('/exploration_goals', Point, queue_size=10)
     	pub = rospy.Publisher('shapes', Marker, queue_size=10)
+    	pointspub = rospy.Publisher('/points', Point, queue_size=10)
     	 	
     	
    		 	   	
@@ -176,7 +178,10 @@ def node():
 	  	
 	  
 	  elif checking==1:
-	 	V=vstack((V,x_new))	
+	 	V=vstack((V,x_new))
+	 	point.x=x_new[0]
+	 	point.y=x_new[1]
+	 	pointspub.publish(point)	
 	 	temp=concatenate((x_nearest,x_new))        
 	        E=vstack((E,temp))
 
@@ -189,7 +194,7 @@ def node():
           pub.publish(line)        
           pub.publish(points) 
 		
-	  #raw_input("")
+	  raw_input("")
 	  rate.sleep()
 
 

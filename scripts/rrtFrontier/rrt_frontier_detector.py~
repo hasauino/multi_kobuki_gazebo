@@ -189,7 +189,7 @@ def node():
           pub.publish(line)        
           pub.publish(points) 
 		
-	  #raw_input("")
+	  raw_input("")
 	  rate.sleep()
 
 
