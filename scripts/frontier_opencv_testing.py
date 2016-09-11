@@ -48,72 +48,35 @@ def node():
 
 
 
-
+# wait until map is received, when a map is received, mapData.header.seq will not be < 1
+	while mapData.header.seq<1 or len(mapData.data)<1:
+		pass
     	   	
     	rate = rospy.Rate(50)	
 
-	listener = tf.TransformListener()
-	listener.waitForTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0),rospy.Duration(10.0))
-	
-        try:
-		(trans,rot) = listener.lookupTransform('/robot_1/map', '/robot_1/base_link', rospy.Time(0))
-		
-		
-        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
-		trans=[0,0]
-		
-	xinx=trans[0]
-	xiny=trans[1]	
-	x_init=array([xinx,xiny])
-	
-	V=array([x_init])
-	i=1.0
-	E=concatenate((x_init,x_init))	
 
     	points=Marker()
-    	line=Marker()
+    	
 #Set the frame ID and timestamp.  See the TF tutorials for information on these.
-    	points.header.frame_id=line.header.frame_id="/robot_1/map"
-    	points.header.stamp=line.header.stamp=rospy.Time.now()
+    	points.header.frame_id="/robot_1/map"
+    	points.header.stamp=rospy.Time.now()
 	
-    	points.ns=line.ns = "markers"
+    	points.ns= "markers"
     	points.id = 0
-    	line.id =1
 	
     	points.type = Marker.POINTS
-    	line.type=Marker.LINE_LIST
 #Set the marker action.  Options are ADD, DELETE, and new in ROS Indigo: 3 (DELETEALL)
-    	points.action = line.action = Marker.ADD;
+    	points.action = Marker.ADD;
 	
-    	points.pose.orientation.w = line.pose.orientation.w = 1.0;
-	
+    	points.pose.orientation.w = 1.0;
 	points.scale.x=points.scale.y=0.3;
-
     	points.color.r = 255.0/255.0
 	points.color.g = 0.0/255.0
 	points.color.b = 0.0/255.0
-   	
-    	points.color.a=1;
-	line.color.a = 0.6;
-    	points.lifetime =line.lifetime = rospy.Duration();
+   	points.color.a=1;
+    	points.lifetime == rospy.Duration();
 
 
-    	p=Point()
-    	p.x = x_init[0] ;
-    	p.y = x_init[0] ;
-    	p.z = 0;
-
-    	pp=[]
-        pl=[]
-    	pp.append(copy(p))
-    
-	 
-	
-	xdim=mapData.info.width
-	ydim=mapData.info.height
-	resolution=mapData.info.resolution
-	Xstartx=mapData.info.origin.position.x
-	Xstarty=mapData.info.origin.position.y 
 	
 
 #-------------------------------OpenCV frontier detection------------------------------------------
