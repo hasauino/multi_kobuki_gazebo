@@ -45,6 +45,8 @@ def getfrontier(mapData):
 
 	im2, contours, hierarchy = cv2.findContours(frontier,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 	all_pts=[]
+	print len(contours)
+	raw_input('')
 	if len(contours)>0:
 		upto=len(contours)-1
 		i=0

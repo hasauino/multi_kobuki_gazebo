@@ -108,7 +108,7 @@ def node():
 	
     	line.scale.x = line.scale.y= 0.06;
     	points.scale.x=points.scale.y=0.3; 
-    	points.scale.y=0.3; 
+   
 	
     	line.color.r =0.0#9.0/255.0
 	line.color.g= 0.0#91.0/255.0
