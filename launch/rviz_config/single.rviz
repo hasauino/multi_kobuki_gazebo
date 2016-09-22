@@ -3,7 +3,9 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /Grid1
+        - /Marker1
       Splitter Ratio: 0.5
     Tree Height: 451
   - Class: rviz/Selection
@@ -29,7 +31,7 @@ Visualization Manager:
   Class: ""
   Displays:
     - Alpha: 0.2
-      Cell Size: 0.5
+      Cell Size: 0.1
       Class: rviz/Grid
       Color: 160; 160; 164
       Enabled: true
@@ -117,7 +119,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Marker
       Enabled: true
-      Marker Topic: /robot_1/shapes
+      Marker Topic: /shapes
       Name: Marker
       Namespaces:
         markers: true
@@ -230,7 +232,6 @@ Visualization Manager:
       Marker Topic: /frontiers
       Name: Marker
       Namespaces:
-        markers: true
         markers2: true
       Queue Size: 100
       Value: true
@@ -258,16 +259,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 23.6186
+      Distance: 7.43439
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 1.93945
-        Y: -1.46524
-        Z: 1.54234
+        X: -1.70661
+        Y: 0.554074
+        Z: 1.54437
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.5698
@@ -292,4 +293,4 @@ Window Geometry:
     collapsed: true
   Width: 667
   X: 23
-  Y: 10
+  Y: 16

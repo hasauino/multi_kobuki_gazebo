@@ -125,7 +125,7 @@ def node():
     	p=Point()
 
     	p.x = x_init[0] ;
-    	p.y = x_init[0] ;
+    	p.y = x_init[1] ;
     	p.z = 0;
 
     	pp=[]

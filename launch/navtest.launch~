@@ -15,7 +15,7 @@
   
 
   <!-- spawn robot 1-->
-  <group ns="robot_1">
+  <group ns="/robot_1">
   <include file="$(find multi_kobuki_gazebo)/launch/includes/robot.launch.xml">
   <arg name="robot_name" value="robot_1"/>
   <arg name="init_pose" value="-x 0.0 -y 0.0 -z 0.0"/>
@@ -34,7 +34,7 @@
   <param name="map_topic" value="/map_merge/map"/>
   <param name="base_frame_topic" value="base_link"/>
   </node--> 
-  <node pkg="multi_kobuki_gazebo" type="frontier_opencv_testing.py" name="opencv_frontier_detector" output="screen"/>
+  <!--node pkg="multi_kobuki_gazebo" type="frontier_opencv_testing.py" name="opencv_frontier_detector" output="screen"/-->
   </group>
   
 
