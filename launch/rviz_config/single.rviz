@@ -7,7 +7,7 @@ Panels:
         - /Grid1
         - /Marker1
       Splitter Ratio: 0.5
-    Tree Height: 451
+    Tree Height: 359
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -31,7 +31,7 @@ Visualization Manager:
   Class: ""
   Displays:
     - Alpha: 0.2
-      Cell Size: 0.1
+      Cell Size: 0.5
       Class: rviz/Grid
       Color: 160; 160; 164
       Enabled: true
@@ -214,7 +214,7 @@ Visualization Manager:
       Max Color: 255; 255; 255
       Max Intensity: 999999
       Min Color: 0; 0; 0
-      Min Intensity: 0
+      Min Intensity: 3.78351e-44
       Name: LaserScan
       Position Transformer: XYZ
       Queue Size: 10
@@ -259,16 +259,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 7.43439
+      Distance: 24.4032
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -1.70661
-        Y: 0.554074
-        Z: 1.54437
+        X: 2.33497
+        Y: -2.46413
+        Z: 1.54134
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.5698
@@ -293,4 +293,4 @@ Window Geometry:
     collapsed: true
   Width: 667
   X: 23
-  Y: 16
+  Y: 10
