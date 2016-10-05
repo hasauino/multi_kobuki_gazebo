@@ -15,7 +15,7 @@
   
 
   <!-- spawn robot 1-->
-  <group ns="robot_1">
+  <group ns="/robot_1">
   <include file="$(find multi_kobuki_gazebo)/launch/includes/robot.launch.xml">
   <arg name="robot_name" value="robot_1"/>
   <arg name="init_pose" value="-x 0.0 -y 0.0 -z 0.0"/>
@@ -24,18 +24,18 @@
   
   <include file="$(find multi_kobuki_gazebo)/launch/includes/move_baseSafe.launch">
   <arg name="namespace" value="robot_1"/>
-  </include>  
+  </include> 
+  
+ 
   </group>
   
 
-
+  
   <!-- Map megring (know inital position case)-->
-  <!--include file="$(find multi_kobuki_gazebo)/launch/includes/initposes.launch"/>
-  <include file="$(find multirobot_map_merge)/launch/map_merge.launch"/-->
-
-   <!-- Explorer-->
-   <!--node pkg="multi_kobuki_gazebo" type="rrtexplorer1.py" name="rrt_explorer"/-->
-
+  <!--include file="$(find multi_kobuki_gazebo)/launch/includes/initposes.launch"/-->
+  <!--include file="$(find multirobot_map_merge)/launch/map_merge.launch"/-->
+  <!-- transformation between robots-->
+  <!--node pkg="tf" type="static_transform_publisher" name="robot2_to_robot1" args="-3.0 -4.0 0 0 0 0 /robot_1/map /robot_2/map 20" /-->
 
 
   <!-- run RViz node (visualization) -->
