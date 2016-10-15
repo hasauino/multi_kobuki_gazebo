@@ -11,70 +11,64 @@
     <arg name="world_name" value="$(find multi_kobuki_gazebo)/worlds/lab.world"/>
   </include>
   
-  
+
   
 
   <!-- spawn robot 1-->
-  <group ns="robot_1">
+  <group ns="/robot_1">
   <include file="$(find multi_kobuki_gazebo)/launch/includes/robot.launch.xml">
   <arg name="robot_name" value="robot_1"/>
-  <arg name="init_pose" value="-x 0.0 -y 0.0 -z 1.0"/>
+  <arg name="init_pose" value="-x 0.0 -y 0.0 -z 0.0"/>
   
   </include>
   
   <include file="$(find multi_kobuki_gazebo)/launch/includes/move_baseSafe.launch">
   <arg name="namespace" value="robot_1"/>
-  </include>  
-  <node pkg="multi_kobuki_gazebo" type="rrt_frontier_detector.py" name="rrt_frontier_detector" output="screen"/>  
+  </include> 
+  
   </group>
   
   
-  <!-- spawn robot 2-->
-  <group ns="robot_2">
+    <!-- spawn robot 2-->
+  <group ns="/robot_2">
   <include file="$(find multi_kobuki_gazebo)/launch/includes/robot.launch.xml">
   <arg name="robot_name" value="robot_2"/>
-  <arg name="init_pose" value="-x 0.0 -y 0.5 -z 1.0"/>
+  <arg name="init_pose" value="-x 0.0 -y -1.0 -z 0.0"/>
+  
   </include>
   
   <include file="$(find multi_kobuki_gazebo)/launch/includes/move_baseSafe.launch">
   <arg name="namespace" value="robot_2"/>
-  </include>  
-  <node pkg="multi_kobuki_gazebo" type="rrt_frontier_detector.py" name="rrt_frontier_detector" output="screen"/> 
+  </include> 
+  
   </group>
   
   
   
-    <!-- spawn robot 3-->
-  <group ns="robot_3">
+      <!-- spawn robot 3-->
+  <group ns="/robot_3">
   <include file="$(find multi_kobuki_gazebo)/launch/includes/robot.launch.xml">
   <arg name="robot_name" value="robot_3"/>
-  <arg name="init_pose" value="-x 0.0 -y 1.0 -z 1.0"/>
+  <arg name="init_pose" value="-x 0.0 -y 1.0 -z 0.0"/>
+  
   </include>
   
   <include file="$(find multi_kobuki_gazebo)/launch/includes/move_baseSafe.launch">
   <arg name="namespace" value="robot_3"/>
-  </include>  
-  <node pkg="multi_kobuki_gazebo" type="rrt_frontier_detector.py" name="rrt_frontier_detector" output="screen"/>  
+  </include> 
+  
   </group>
   
+
   
-  
-  
-  
-  
-  
-  
-  
+
   <!-- transformation between robots-->
-  <node pkg="tf" type="static_transform_publisher" name="robot2_to_robot1" args="0 0.5 0 0 0 0 /robot_1/map /robot_2/map 20" />
+  <node pkg="tf" type="static_transform_publisher" name="robot2_to_robot1" args="0 -1.0 0 0 0 0 /robot_1/map /robot_2/map 20" />
   <node pkg="tf" type="static_transform_publisher" name="robot3_to_robot1" args="0 1.0 0 0 0 0 /robot_1/map /robot_3/map 20" />
 
   <!-- Map megring (know inital position case)-->
   <include file="$(find multi_kobuki_gazebo)/launch/includes/initposes.launch"/>
   <include file="$(find multirobot_map_merge)/launch/map_merge.launch"/>
-
-   <!-- Explorer-->
-   <node pkg="multi_kobuki_gazebo" type="rrtexplorer3.py" name="rrt_explorer"/>
 
 
 

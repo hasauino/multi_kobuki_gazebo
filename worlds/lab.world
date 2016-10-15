@@ -1,3 +1,4 @@
+<!-- -->
 <sdf version='1.4'>
   <world name='GrannyAnnie'>
     <light name='sun' type='directional'>
