@@ -29,7 +29,7 @@
       <param name="str" value="0.01"/>
       <param name="stt" value="0.02"/>
       <param name="linearUpdate" value="0.01"/>
-      <param name="angularUpdate" value="0.01"/>
+      <param name="angularUpdatsudo shutdown -P nowe" value="0.01"/>
       <param name="temporalUpdate" value="0.1"/>
       <param name="resampleThreshold" value="0.5"/>
       <param name="particles" value="30"/>
@@ -236,8 +236,8 @@
 
 
   <!-- transformation between robots-->
-  <node pkg="tf" type="static_transform_publisher" name="robot2_to_robot1" args="0 0.5 0 0 0 0 /robot_1/map /robot_2/map 20" />
-  <node pkg="tf" type="static_transform_publisher" name="robot3_to_robot1" args="0 1.0 0 0 0 0 /robot_1/map /robot_3/map 20" />
+  <node pkg="tf" type="static_transform_publisher" name="robot2_to_robot1" args="0 -0.9 0 0 0 0 /robot_1/map /robot_2/map 20" />
+  <node pkg="tf" type="static_transform_publisher" name="robot3_to_robot1" args="0 0.9 0 0 0 0 /robot_1/map /robot_3/map 20" />
 
   <!-- Map megring (know inital position case)-->
   <include file="$(find multi_kobuki_gazebo)/launch/includes/initposes.launch"/>

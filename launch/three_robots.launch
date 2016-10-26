@@ -33,7 +33,7 @@
   <group ns="/robot_2">
   <include file="$(find multi_kobuki_gazebo)/launch/includes/robot.launch.xml">
   <arg name="robot_name" value="robot_2"/>
-  <arg name="init_pose" value="-x 0.0 -y -1.0 -z 0.0"/>
+  <arg name="init_pose" value="-x 0.0 -y -0.9 -z 0.0"/>
   
   </include>
   
@@ -49,7 +49,7 @@
   <group ns="/robot_3">
   <include file="$(find multi_kobuki_gazebo)/launch/includes/robot.launch.xml">
   <arg name="robot_name" value="robot_3"/>
-  <arg name="init_pose" value="-x 0.0 -y 1.0 -z 0.0"/>
+  <arg name="init_pose" value="-x 0.0 -y 0.9 -z 0.0"/>
   
   </include>
   
@@ -63,8 +63,8 @@
   
 
   <!-- transformation between robots-->
-  <node pkg="tf" type="static_transform_publisher" name="robot2_to_robot1" args="0 -1.0 0 0 0 0 /robot_1/map /robot_2/map 20" />
-  <node pkg="tf" type="static_transform_publisher" name="robot3_to_robot1" args="0 1.0 0 0 0 0 /robot_1/map /robot_3/map 20" />
+  <node pkg="tf" type="static_transform_publisher" name="robot2_to_robot1" args="0 -0.9 0 0 0 0 /robot_1/map /robot_2/map 20" />
+  <node pkg="tf" type="static_transform_publisher" name="robot3_to_robot1" args="0 0.9 0 0 0 0 /robot_1/map /robot_3/map 20" />
 
   <!-- Map megring (know inital position case)-->
   <include file="$(find multi_kobuki_gazebo)/launch/includes/initposes.launch"/>
