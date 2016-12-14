@@ -60,16 +60,26 @@
     <param name="planner_patience" value="1" />
     <param name="controller_patience" value="1" /> 
   
-    <remap from="cmd_vel" to="mobile_base/commands/velocity"/>
+    <remap from="cmd_vel" to="/robot_1/cmd_vel_mux/navigate"/>
     <param name="recovery_behavior_enabled" value="false" />
     <!--param name="clearing_rotation_allowed" value="false" /-->
-    <!--param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" /-->
+    <!--param name="base_local_planner" value="eband_local_planner/EBandPlannerROS" /-->
+    
+    
     
     <rosparam file="$(find multi_kobuki_gazebo)/launch/includes/costmap_common_params.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find multi_kobuki_gazebo)/launch/includes/costmap_common_params.yaml" command="load" ns="local_costmap" />
     <rosparam file="$(find multi_kobuki_gazebo)/launch/includes/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find multi_kobuki_gazebo)/launch/includes/global_costmap_params.yaml" command="load" />
     <rosparam file="$(find multi_kobuki_gazebo)/launch/includes/base_local_planner_params.yaml" command="load" />  
+
+  
+
+    <!--param name="EBandPlannerROS/max_acceleration " value="0.2"/>
+    <param name="EBandPlannerROS/max_vel_lin " value="0.5"/>
+    <param name="EBandPlannerROS/xy_goal_tolerance " value="0.3"/>
+    <param name="EBandPlannerROS/yaw_goal_tolerance " value="2"/-->
+    
     
     <param name="global_costmap/global_frame" value="$(arg namespace)/map"/>
     <param name="global_costmap/robot_base_frame" value="$(arg namespace)/base_link"/>

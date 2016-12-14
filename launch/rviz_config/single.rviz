@@ -4,10 +4,10 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /Grid1
+        - /Path1
         - /Marker3
       Splitter Ratio: 0.5
-    Tree Height: 450
+    Tree Height: 359
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -66,25 +66,9 @@ Visualization Manager:
           Value: true
         robot_1/base_link:
           Value: true
-        robot_1/caster_back_link:
-          Value: true
-        robot_1/caster_front_link:
-          Value: true
-        robot_1/cliff_sensor_front_link:
-          Value: true
-        robot_1/cliff_sensor_left_link:
-          Value: true
-        robot_1/cliff_sensor_right_link:
-          Value: true
-        robot_1/gyro_link:
-          Value: true
         robot_1/map:
           Value: true
         robot_1/odom:
-          Value: true
-        robot_1/wheel_left_link:
-          Value: true
-        robot_1/wheel_right_link:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -97,22 +81,6 @@ Visualization Manager:
             robot_1/base_footprint:
               robot_1/base_link:
                 robot_1/base_laser_link:
-                  {}
-                robot_1/caster_back_link:
-                  {}
-                robot_1/caster_front_link:
-                  {}
-                robot_1/cliff_sensor_front_link:
-                  {}
-                robot_1/cliff_sensor_left_link:
-                  {}
-                robot_1/cliff_sensor_right_link:
-                  {}
-                robot_1/gyro_link:
-                  {}
-                robot_1/wheel_left_link:
-                  {}
-                robot_1/wheel_right_link:
                   {}
       Update Interval: 0
       Value: true
@@ -213,7 +181,7 @@ Visualization Manager:
       Max Color: 255; 255; 255
       Max Intensity: 999999
       Min Color: 0; 0; 0
-      Min Intensity: 2.8026e-45
+      Min Intensity: 1.4013e-45
       Name: LaserScan
       Position Transformer: XYZ
       Queue Size: 10
@@ -260,22 +228,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 20.748
+      Distance: 22.9874
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.897306
-        Y: -0.375028
-        Z: 1.19857
+        X: -4.59694
+        Y: 1.90071
+        Z: 1.19557
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.5698
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.71541
+      Yaw: 1.60041
     Saved: ~
 Window Geometry:
   Displays:
