@@ -66,9 +66,25 @@ Visualization Manager:
           Value: true
         robot_1/base_link:
           Value: true
+        robot_1/caster_back_link:
+          Value: true
+        robot_1/caster_front_link:
+          Value: true
+        robot_1/cliff_sensor_front_link:
+          Value: true
+        robot_1/cliff_sensor_left_link:
+          Value: true
+        robot_1/cliff_sensor_right_link:
+          Value: true
+        robot_1/gyro_link:
+          Value: true
         robot_1/map:
           Value: true
         robot_1/odom:
+          Value: true
+        robot_1/wheel_left_link:
+          Value: true
+        robot_1/wheel_right_link:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -82,6 +98,22 @@ Visualization Manager:
               robot_1/base_link:
                 robot_1/base_laser_link:
                   {}
+                robot_1/caster_back_link:
+                  {}
+                robot_1/caster_front_link:
+                  {}
+                robot_1/cliff_sensor_front_link:
+                  {}
+                robot_1/cliff_sensor_left_link:
+                  {}
+                robot_1/cliff_sensor_right_link:
+                  {}
+                robot_1/gyro_link:
+                  {}
+                robot_1/wheel_left_link:
+                  {}
+                robot_1/wheel_right_link:
+                  {}
       Update Interval: 0
       Value: true
     - Class: rviz/Marker
@@ -89,7 +121,7 @@ Visualization Manager:
       Marker Topic: /shapes
       Name: Marker
       Namespaces:
-        markers: true
+        {}
       Queue Size: 100
       Value: true
     - Alpha: 1
@@ -124,6 +156,9 @@ Visualization Manager:
       Class: rviz/Path
       Color: 25; 255; 0
       Enabled: true
+      Head Diameter: 0.3
+      Head Length: 0.2
+      Length: 0.3
       Line Style: Lines
       Line Width: 0.03
       Name: Path
@@ -131,6 +166,10 @@ Visualization Manager:
         X: 0
         Y: 0
         Z: 0
+      Pose Style: None
+      Radius: 0.03
+      Shaft Diameter: 0.1
+      Shaft Length: 0.1
       Topic: /robot_1/move_base_node/NavfnROS/plan
       Unreliable: false
       Value: true
@@ -139,6 +178,9 @@ Visualization Manager:
       Class: rviz/Path
       Color: 85; 0; 127
       Enabled: true
+      Head Diameter: 0.3
+      Head Length: 0.2
+      Length: 0.3
       Line Style: Lines
       Line Width: 0.03
       Name: Path
@@ -146,6 +188,10 @@ Visualization Manager:
         X: 0
         Y: 0
         Z: 0
+      Pose Style: None
+      Radius: 0.03
+      Shaft Diameter: 0.1
+      Shaft Length: 0.1
       Topic: /robot_1/move_base_node/TrajectoryPlannerROS/global_plan
       Unreliable: false
       Value: true
@@ -154,6 +200,9 @@ Visualization Manager:
       Class: rviz/Path
       Color: 255; 255; 127
       Enabled: true
+      Head Diameter: 0.3
+      Head Length: 0.2
+      Length: 0.3
       Line Style: Lines
       Line Width: 0.03
       Name: Path
@@ -161,6 +210,10 @@ Visualization Manager:
         X: 0
         Y: 0
         Z: 0
+      Pose Style: None
+      Radius: 0.03
+      Shaft Diameter: 0.1
+      Shaft Length: 0.1
       Topic: /robot_1/move_base_node/TrajectoryPlannerROS/local_plan
       Unreliable: false
       Value: true
@@ -179,9 +232,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 999999
+      Max Intensity: 2.70451e-43
       Min Color: 0; 0; 0
-      Min Intensity: 1.4013e-45
+      Min Intensity: 0
       Name: LaserScan
       Position Transformer: XYZ
       Queue Size: 10
@@ -199,7 +252,7 @@ Visualization Manager:
       Marker Topic: /frontiers
       Name: Marker
       Namespaces:
-        markers2: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/Marker
@@ -207,7 +260,7 @@ Visualization Manager:
       Marker Topic: /centroids
       Name: Marker
       Namespaces:
-        markers3: true
+        {}
       Queue Size: 100
       Value: true
   Enabled: true
@@ -228,22 +281,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 22.9874
+      Distance: 25.7459
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -4.59694
-        Y: 1.90071
-        Z: 1.19557
+        X: 0.888645
+        Y: -0.862782
+        Z: 1.19332
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.5698
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.60041
+      Yaw: 4.70541
     Saved: ~
 Window Geometry:
   Displays:
