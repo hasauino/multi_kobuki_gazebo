@@ -4,7 +4,7 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /Marker2
+        - /Map1
         - /Marker3
       Splitter Ratio: 0.5
     Tree Height: 513
@@ -146,7 +146,7 @@ Visualization Manager:
       Marker Topic: /shapes
       Name: Marker
       Namespaces:
-        {}
+        markers: true
       Queue Size: 100
       Value: true
     - Alpha: 1
@@ -288,16 +288,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 17.8544
+      Distance: 45.3849
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 3.179
-        Y: -0.361282
-        Z: -0.0766035
+        X: 8.37754
+        Y: 0.316684
+        Z: -0.0760005
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.5698

@@ -5,11 +5,11 @@
 <launch> 
 <!-- xinit,yiniy and yawinit  are robot2 pose with respect to robot1-->
 <arg name="xinit2" value="0.0"/>
-<arg name="yinit2" value="-0.504"/>
+<arg name="yinit2" value="-0.576"/>
 <arg name="yawinit2" value="0.0"/>
 
 <arg name="xinit3" value="0.0"/>
-<arg name="yinit3" value="-1.026"/>
+<arg name="yinit3" value="-1.162"/>
 <arg name="yawinit3" value="0.0"/>
 
 <arg name="particles" value="30"/>
