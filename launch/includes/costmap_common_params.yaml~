@@ -1,4 +1,3 @@
-
 #This file contains common configuration options for the two costmaps used in the navigation stack for more details on the parameters in this file, and a full list of the parameters used by the costmaps, please see http://www.ros.org/wiki/costmap_2d
 
 #For this example we'll configure the costmap in voxel-grid mode

@@ -77,11 +77,31 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        robot1:
+        dummy_robot/base_footprint:
           Value: true
-        robot2:
+        dummy_robot/base_laser_link:
           Value: true
-        robot3:
+        dummy_robot/base_link:
+          Value: true
+        dummy_robot/caster_back_link:
+          Value: true
+        dummy_robot/caster_front_link:
+          Value: true
+        dummy_robot/cliff_sensor_front_link:
+          Value: true
+        dummy_robot/cliff_sensor_left_link:
+          Value: true
+        dummy_robot/cliff_sensor_right_link:
+          Value: true
+        dummy_robot/gyro_link:
+          Value: true
+        dummy_robot/map:
+          Value: true
+        dummy_robot/odom:
+          Value: true
+        dummy_robot/wheel_left_link:
+          Value: true
+        dummy_robot/wheel_right_link:
           Value: true
         robot_1/base_footprint:
           Value: true
@@ -89,9 +109,25 @@ Visualization Manager:
           Value: true
         robot_1/base_link:
           Value: true
+        robot_1/caster_back_link:
+          Value: true
+        robot_1/caster_front_link:
+          Value: true
+        robot_1/cliff_sensor_front_link:
+          Value: true
+        robot_1/cliff_sensor_left_link:
+          Value: true
+        robot_1/cliff_sensor_right_link:
+          Value: true
+        robot_1/gyro_link:
+          Value: true
         robot_1/map:
           Value: true
         robot_1/odom:
+          Value: true
+        robot_1/wheel_left_link:
+          Value: true
+        robot_1/wheel_right_link:
           Value: true
         robot_2/base_footprint:
           Value: true
@@ -99,9 +135,25 @@ Visualization Manager:
           Value: true
         robot_2/base_link:
           Value: true
+        robot_2/caster_back_link:
+          Value: true
+        robot_2/caster_front_link:
+          Value: true
+        robot_2/cliff_sensor_front_link:
+          Value: true
+        robot_2/cliff_sensor_left_link:
+          Value: true
+        robot_2/cliff_sensor_right_link:
+          Value: true
+        robot_2/gyro_link:
+          Value: true
         robot_2/map:
           Value: true
         robot_2/odom:
+          Value: true
+        robot_2/wheel_left_link:
+          Value: true
+        robot_2/wheel_right_link:
           Value: true
         robot_3/base_footprint:
           Value: true
@@ -109,11 +161,25 @@ Visualization Manager:
           Value: true
         robot_3/base_link:
           Value: true
+        robot_3/caster_back_link:
+          Value: true
+        robot_3/caster_front_link:
+          Value: true
+        robot_3/cliff_sensor_front_link:
+          Value: true
+        robot_3/cliff_sensor_left_link:
+          Value: true
+        robot_3/cliff_sensor_right_link:
+          Value: true
+        robot_3/gyro_link:
+          Value: true
         robot_3/map:
           Value: true
         robot_3/odom:
           Value: true
-        world:
+        robot_3/wheel_left_link:
+          Value: true
+        robot_3/wheel_right_link:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -122,10 +188,28 @@ Visualization Manager:
       Show Names: false
       Tree:
         robot_1/map:
+          dummy_robot/map:
+            {}
           robot_1/odom:
             robot_1/base_footprint:
               robot_1/base_link:
                 robot_1/base_laser_link:
+                  {}
+                robot_1/caster_back_link:
+                  {}
+                robot_1/caster_front_link:
+                  {}
+                robot_1/cliff_sensor_front_link:
+                  {}
+                robot_1/cliff_sensor_left_link:
+                  {}
+                robot_1/cliff_sensor_right_link:
+                  {}
+                robot_1/gyro_link:
+                  {}
+                robot_1/wheel_left_link:
+                  {}
+                robot_1/wheel_right_link:
                   {}
           robot_2/map:
             robot_2/odom:
@@ -133,11 +217,43 @@ Visualization Manager:
                 robot_2/base_link:
                   robot_2/base_laser_link:
                     {}
+                  robot_2/caster_back_link:
+                    {}
+                  robot_2/caster_front_link:
+                    {}
+                  robot_2/cliff_sensor_front_link:
+                    {}
+                  robot_2/cliff_sensor_left_link:
+                    {}
+                  robot_2/cliff_sensor_right_link:
+                    {}
+                  robot_2/gyro_link:
+                    {}
+                  robot_2/wheel_left_link:
+                    {}
+                  robot_2/wheel_right_link:
+                    {}
           robot_3/map:
             robot_3/odom:
               robot_3/base_footprint:
                 robot_3/base_link:
                   robot_3/base_laser_link:
+                    {}
+                  robot_3/caster_back_link:
+                    {}
+                  robot_3/caster_front_link:
+                    {}
+                  robot_3/cliff_sensor_front_link:
+                    {}
+                  robot_3/cliff_sensor_left_link:
+                    {}
+                  robot_3/cliff_sensor_right_link:
+                    {}
+                  robot_3/gyro_link:
+                    {}
+                  robot_3/wheel_left_link:
+                    {}
+                  robot_3/wheel_right_link:
                     {}
       Update Interval: 0
       Value: true
@@ -146,7 +262,7 @@ Visualization Manager:
       Marker Topic: /shapes
       Name: Marker
       Namespaces:
-        markers: true
+        {}
       Queue Size: 100
       Value: true
     - Alpha: 1
@@ -256,7 +372,7 @@ Visualization Manager:
       Marker Topic: /frontiers
       Name: Marker
       Namespaces:
-        markers2: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/Marker
@@ -264,7 +380,7 @@ Visualization Manager:
       Marker Topic: /centroids
       Name: Marker
       Namespaces:
-        markers3: true
+        {}
       Queue Size: 100
       Value: true
   Enabled: true

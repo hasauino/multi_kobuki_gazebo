@@ -36,7 +36,7 @@
       <param name="ymin" value="-5.0"/>
       <param name="xmax" value="5.0"/>
       <param name="ymax" value="5.0"/>
-      <param name="delta" value="0.05"/>
+      <param name="delta" value="0.1"/>
       <param name="llsamplerange" value="0.01"/>
       <param name="llsamplestep" value="0.01"/>
       <param name="lasamplerange" value="0.005"/>
@@ -75,10 +75,6 @@
     <param name="local_costmap/laser_scan_sensor/sensor_frame" value="$(arg namespace)/base_laser_link"/>
     <param name="local_costmap/laser_scan_sensor/topic" value="/$(arg namespace)/base_scan"/>
     <param name="local_costmap/obstacle_layer/laser_scan_sensor/topic" value="/$(arg namespace)/base_scan"/>
-    
-    
-    <!--rosparam param="local_costmap/laser_scan_sensor/topic" subst_value="True">$(arg namespace)/base_scan</rosparam-->
-    
   </node>
 
 </launch>
