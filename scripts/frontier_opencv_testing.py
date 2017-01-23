@@ -40,7 +40,7 @@ def node():
 	global mapData
 	exploration_goal=Point()
 	
-    	rospy.Subscriber("/robot_1/map", OccupancyGrid, mapCallBack)
+    	rospy.Subscriber("/map_merge/map", OccupancyGrid, mapCallBack)
 	targetspub = rospy.Publisher('/exploration_goals', Point, queue_size=10)
     	pub = rospy.Publisher('shapes', Marker, queue_size=10)
     	rospy.init_node('RRTexplorer', anonymous=False)
