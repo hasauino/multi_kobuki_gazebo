@@ -81,25 +81,9 @@ Visualization Manager:
           Value: true
         robot_1/base_link:
           Value: true
-        robot_1/caster_back_link:
-          Value: true
-        robot_1/caster_front_link:
-          Value: true
-        robot_1/cliff_sensor_front_link:
-          Value: true
-        robot_1/cliff_sensor_left_link:
-          Value: true
-        robot_1/cliff_sensor_right_link:
-          Value: true
-        robot_1/gyro_link:
-          Value: true
         robot_1/map:
           Value: true
         robot_1/odom:
-          Value: true
-        robot_1/wheel_left_link:
-          Value: true
-        robot_1/wheel_right_link:
           Value: true
         robot_2/base_footprint:
           Value: true
@@ -107,25 +91,9 @@ Visualization Manager:
           Value: true
         robot_2/base_link:
           Value: true
-        robot_2/caster_back_link:
-          Value: true
-        robot_2/caster_front_link:
-          Value: true
-        robot_2/cliff_sensor_front_link:
-          Value: true
-        robot_2/cliff_sensor_left_link:
-          Value: true
-        robot_2/cliff_sensor_right_link:
-          Value: true
-        robot_2/gyro_link:
-          Value: true
         robot_2/map:
           Value: true
         robot_2/odom:
-          Value: true
-        robot_2/wheel_left_link:
-          Value: true
-        robot_2/wheel_right_link:
           Value: true
         robot_3/base_footprint:
           Value: true
@@ -133,25 +101,9 @@ Visualization Manager:
           Value: true
         robot_3/base_link:
           Value: true
-        robot_3/caster_back_link:
-          Value: true
-        robot_3/caster_front_link:
-          Value: true
-        robot_3/cliff_sensor_front_link:
-          Value: true
-        robot_3/cliff_sensor_left_link:
-          Value: true
-        robot_3/cliff_sensor_right_link:
-          Value: true
-        robot_3/gyro_link:
-          Value: true
         robot_3/map:
           Value: true
         robot_3/odom:
-          Value: true
-        robot_3/wheel_left_link:
-          Value: true
-        robot_3/wheel_right_link:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -165,65 +117,17 @@ Visualization Manager:
               robot_1/base_link:
                 robot_1/base_laser_link:
                   {}
-                robot_1/caster_back_link:
-                  {}
-                robot_1/caster_front_link:
-                  {}
-                robot_1/cliff_sensor_front_link:
-                  {}
-                robot_1/cliff_sensor_left_link:
-                  {}
-                robot_1/cliff_sensor_right_link:
-                  {}
-                robot_1/gyro_link:
-                  {}
-                robot_1/wheel_left_link:
-                  {}
-                robot_1/wheel_right_link:
-                  {}
           robot_2/map:
             robot_2/odom:
               robot_2/base_footprint:
                 robot_2/base_link:
                   robot_2/base_laser_link:
                     {}
-                  robot_2/caster_back_link:
-                    {}
-                  robot_2/caster_front_link:
-                    {}
-                  robot_2/cliff_sensor_front_link:
-                    {}
-                  robot_2/cliff_sensor_left_link:
-                    {}
-                  robot_2/cliff_sensor_right_link:
-                    {}
-                  robot_2/gyro_link:
-                    {}
-                  robot_2/wheel_left_link:
-                    {}
-                  robot_2/wheel_right_link:
-                    {}
           robot_3/map:
             robot_3/odom:
               robot_3/base_footprint:
                 robot_3/base_link:
                   robot_3/base_laser_link:
-                    {}
-                  robot_3/caster_back_link:
-                    {}
-                  robot_3/caster_front_link:
-                    {}
-                  robot_3/cliff_sensor_front_link:
-                    {}
-                  robot_3/cliff_sensor_left_link:
-                    {}
-                  robot_3/cliff_sensor_right_link:
-                    {}
-                  robot_3/gyro_link:
-                    {}
-                  robot_3/wheel_left_link:
-                    {}
-                  robot_3/wheel_right_link:
                     {}
       Update Interval: 0
       Value: true
@@ -248,29 +152,29 @@ Visualization Manager:
       Class: rviz/Map
       Color Scheme: costmap
       Draw Behind: true
-      Enabled: true
+      Enabled: false
       Name: Map
       Topic: /robot_1/move_base_node/local_costmap/costmap
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 0.3
       Class: rviz/Map
       Color Scheme: costmap
       Draw Behind: false
-      Enabled: true
+      Enabled: false
       Name: Map
       Topic: /robot_2/move_base_node/local_costmap/costmap
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 0.3
       Class: rviz/Map
       Color Scheme: costmap
       Draw Behind: true
-      Enabled: true
+      Enabled: false
       Name: Map
       Topic: /robot_3/move_base_node/local_costmap/costmap
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
@@ -342,7 +246,7 @@ Visualization Manager:
       Marker Topic: /frontiers
       Name: Marker
       Namespaces:
-        markers2: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/Marker
@@ -350,7 +254,31 @@ Visualization Manager:
       Marker Topic: /centroids
       Name: Marker
       Namespaces:
-        markers3: true
+        {}
+      Queue Size: 100
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /robot1_rrt_detector_shapes
+      Name: Marker
+      Namespaces:
+        markers: true
+      Queue Size: 100
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /robot2_rrt_detector_shapes
+      Name: Marker
+      Namespaces:
+        markers: true
+      Queue Size: 100
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /robot3_rrt_detector_shapes
+      Name: Marker
+      Namespaces:
+        markers: true
       Queue Size: 100
       Value: true
   Enabled: true
@@ -366,7 +294,7 @@ Visualization Manager:
     - Class: rviz/SetInitialPose
       Topic: /initialpose
     - Class: rviz/SetGoal
-      Topic: /robot_2/move_base_simple/goal
+      Topic: /robot_1/move_base_simple/goal
     - Class: rviz/PublishPoint
       Single click: true
       Topic: /clicked_point
@@ -374,16 +302,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 40.4616
+      Distance: 29.676
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -1.2836
-        Y: -3.31087
-        Z: -0.0794886
+        X: 6.47378
+        Y: 0.561229
+        Z: -0.0757287
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.5698
