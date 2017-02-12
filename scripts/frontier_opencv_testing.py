@@ -40,7 +40,7 @@ def node():
 		global mapData
 		exploration_goal=PointStamped()
 
-		rospy.Subscriber("/robot_1/map", OccupancyGrid, mapCallBack)
+		rospy.Subscriber("/map_merge/map", OccupancyGrid, mapCallBack)
 		targetspub = rospy.Publisher('/detected_points', PointStamped, queue_size=10)
 		pub = rospy.Publisher('shapes', Marker, queue_size=10)
 		rospy.init_node('detector', anonymous=False)

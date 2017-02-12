@@ -232,7 +232,7 @@ Visualization Manager:
       Marker Topic: /shapes
       Name: Marker
       Namespaces:
-        markers: true
+        {}
       Queue Size: 100
       Value: true
     - Alpha: 1
@@ -350,7 +350,7 @@ Visualization Manager:
       Marker Topic: /centroids
       Name: Marker
       Namespaces:
-        markers3: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/Marker
@@ -358,7 +358,7 @@ Visualization Manager:
       Marker Topic: /robot1_rrt_detector_shapes
       Name: Marker
       Namespaces:
-        markers: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/Marker
@@ -366,7 +366,7 @@ Visualization Manager:
       Marker Topic: /robot2_rrt_detector_shapes
       Name: Marker
       Namespaces:
-        markers: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/Marker
@@ -374,7 +374,7 @@ Visualization Manager:
       Marker Topic: /robot3_rrt_detector_shapes
       Name: Marker
       Namespaces:
-        markers: true
+        {}
       Queue Size: 100
       Value: true
   Enabled: true
@@ -398,16 +398,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 24.2223
+      Distance: 30.3845
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.0113634
-        Y: -0.065303
-        Z: -0.0762623
+        X: 0.407987
+        Y: -0.20324
+        Z: -0.0764059
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.5698
