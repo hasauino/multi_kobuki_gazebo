@@ -210,7 +210,7 @@
         </scan>
         <range>
           <min>0.10</min>
-          <max>5</max>
+          <max>60</max>
           <resolution>0.01</resolution>
         </range>
         <noise>
